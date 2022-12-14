@@ -44,7 +44,7 @@
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
 | user       | references | null: false, foreign_key: true |
-| address    | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -62,9 +62,9 @@
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | apartment     | string     |                                |
-| phone_number  | string     |                                |
+| phone_number  | string     | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
 
 ### Association
 
- - belongs_to :purchases
+ - belongs_to :purchase
