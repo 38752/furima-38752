@@ -1,24 +1,92 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_reading  | string  | null: false               |
+| first_name_reading | string  | null: false               |
+| birth_date         | date    | null: false               |
+| status             | integer | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+ - has_many :items
+ - has_many :favorites
+ - has_many :items, through: :favorites
+ - has_many :addresses
+ - has_many :purchases
 
-* Configuration
 
-* Database creation
+## addresses テーブル
 
-* Database initialization
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| post_code  | integer    | null: false                    |
+| prefecture | string     | null: false                    |
+| city       | string     | null: false                    |
+| address    | string     | null: false                    |
+| apartment  | string     |                                |
+| status     | integer    | null: false                    |
+| user_id    | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+ - belongs_to :user
+ - has_many :purchases
 
-* Deployment instructions
 
-* ...
+## items テーブル
+
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| detail             | text       | null: false                    |
+| category           | string     | null: false                    |
+| condition          | string     | null: false                    |
+| delivery_charge_by | string     | null: false                    |
+| post_from          | string     | null: false                    |
+| days_to_post       | string     | null: false                    |
+| price              | integer    | null: false                    |
+| status             | integer    | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
+
+### Association
+
+ - belongs_to :user
+ - has_many :favorites
+ - has_many :users, through: :favorites
+ - has_one :purchase
+
+
+## favorites テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
+
+### Association
+
+ - belongs_to :user
+ - belongs_to :item
+
+
+## purchases テーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user_id    | references | null: false, foreign_key: true |
+| address_id | references | null: false, foreign_key: true |
+| item_id    | references | null: false, foreign_key: true |
+
+### Association
+
+ - belongs_to :user
+ - belongs_to :address
+ - belongs_to :item
