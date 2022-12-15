@@ -15,4 +15,7 @@ class User < ApplicationRecord
   validates :last_name_reading,  presence: true, format: { with: VALID_NAME_READING_REGEX }
   validates :first_name_reading, presence: true, format: { with: VALID_NAME_READING_REGEX }
   validates :birth_date,         presence: true
+
+  has_many :items
+  # has_many :purchases
 end
