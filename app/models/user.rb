@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i # 英数混合
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/ # 全角ひらがな、全角カタカナ、漢字
-  VALID_NAME_READING_REGEX = /\A[ァ-ヶー－]+\z/ # 全角カタカナ
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]*\z/i # 英数混合
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥Ａ-Ｚａ-ｚ０-９]*\z/ # 全角ひらがな、全角カタカナ、漢字、全角英数字
+  VALID_NAME_READING_REGEX = /\A[ァ-ヶー－]*\z/ # 全角カタカナ
 
   validates :password,           format: { with: VALID_PASSWORD_REGEX }
   validates :nickname,           presence: true
