@@ -58,6 +58,11 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = @user.password
         check_error_messages(@user, "Password is invalid")
       end
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password += 'ａ'
+        @user.password_confirmation = @user.password
+        check_error_messages(@user, "Password is invalid")
+      end
       it 'passwordとpassword_confirmationが異なると登録できない' do
         @user.password += 'l'
         check_error_messages(@user, "Password confirmation doesn't match Password")
