@@ -104,13 +104,13 @@ RSpec.describe User, type: :model do
         check_error_messages(@user, "Birth date can't be blank")
       end
       it '誕生日が空では登録できない' do
-        binding.pry
         @user.birth_date = '2001-1-'
         check_error_messages(@user, "Birth date can't be blank")
       end
     end
 
     private
+
     def check_error_messages(user, message)
       user.valid?
       expect(user.errors.full_messages).to include(message)

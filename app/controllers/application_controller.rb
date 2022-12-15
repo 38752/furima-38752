@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   private
 
   def basic_auth
@@ -11,8 +10,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def configure_permitted_parameters  # メソッド名は慣習
-    # binding.pry
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_name_reading, :first_name_reading, :birth_date])
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(
+      :sign_up, keys: [:nickname, :last_name, :first_name, :last_name_reading, :first_name_reading, :birth_date]
+    )
   end
 end
