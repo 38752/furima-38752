@@ -82,6 +82,10 @@ RSpec.describe Item, type: :model do
         @item.price = 10_000_000
         check_error_messages(@item, "Price must be less than or equal to 9999999")
       end
+      it 'priceが小数では登録できない' do
+        @item.price = 300.1
+        check_error_messages(@item, "Price must be an integer")
+      end
       it 'priceに全角文字が使われていると登録できない' do
         @item.price = '３00'
         check_error_messages(@item, "Price is not a number")
@@ -89,6 +93,11 @@ RSpec.describe Item, type: :model do
       it 'priceに数字以外が使われていると登録できない' do
         @item.price = 'a300'
         check_error_messages(@item, "Price is not a number")
+      end
+      # user
+      it 'userが紐付いていなければ出品できない' do
+        @item.user = nil
+        check_error_messages(@item, "User must exist")
       end
     end
   end

@@ -9,9 +9,6 @@ function calcTaxChild (){
   const taxRate = 1 / 10;
   const tax = Math.floor(price * taxRate).toLocaleString();
   const profit = Math.floor(price * (1 - taxRate)).toLocaleString();
-  // ↑『実装条件』には「販売手数料と販売利益は、小数点以下を切り捨てて表示すること。」とありますが、
-  // お手本アプリでは、販売手数料を小数点以下切り捨て、販売利益を小数点以下切り上げで表示しているようです。
-  // 変更が容易であり、大きな差はないと思われますので、『実装条件』に準拠し記述しています。
 
   document.getElementById("add-tax-price").textContent = `${tax}`;
   document.getElementById("profit").textContent = `${profit}`;
