@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index]
+
   def index
   end
 
@@ -25,7 +26,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params[:item][:price] = params[:item][:price].tr('０-９','0-9').to_i
     params.require(:item).permit(
       :image, :name, :detail, :category_id, :condition_id, :delivery_charge_by_id, :prefecture_id, :days_to_post_id, :price
     ).merge(user_id: current_user.id)
