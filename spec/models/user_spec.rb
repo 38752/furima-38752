@@ -113,12 +113,5 @@ RSpec.describe User, type: :model do
         check_error_messages(@user, "Birth date can't be blank")
       end
     end
-
-    private
-
-    def check_error_messages(user, message)
-      user.valid?
-      expect(user.errors.full_messages).to include(message)
-    end
   end
 end
