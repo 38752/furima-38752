@@ -9,6 +9,7 @@ require("@rails/ujs").start()
 // JavaScriptファイルが読み込まれなくなることがあるため無効にする
 require("@rails/activestorage").start()
 require("channels")
+require("../tax.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
