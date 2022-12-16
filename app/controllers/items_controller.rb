@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   def move_to_index
     unless user_signed_in?
       redirect_to new_user_session_path
-    end 
+    end
   end
 
   def item_params
@@ -30,5 +30,4 @@ class ItemsController < ApplicationController
       :image, :name, :detail, :category_id, :condition_id, :delivery_charge_by_id, :prefecture_id, :days_to_post_id, :price
     ).merge(user_id: current_user.id)
   end
-
 end

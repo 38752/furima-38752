@@ -79,7 +79,7 @@ RSpec.describe Item, type: :model do
         check_error_messages(@item, "Price must be greater than or equal to 300")
       end
       it 'priceが10000000以上では登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         check_error_messages(@item, "Price must be less than or equal to 9999999")
       end
       it 'priceに全角文字が使われていると登録できない' do
