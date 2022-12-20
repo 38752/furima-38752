@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.all.includes(:user).order("created_at DESC")
+    @items = Item.all.includes(:order).order("created_at DESC")
   end
 
   def new
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path if current_user != @item.user
+    redirect_to root_path if current_user != @item.user || Order.where(item_id: @item.id).exists?
   end
 
   def update
