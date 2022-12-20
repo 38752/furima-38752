@@ -19,6 +19,7 @@ RSpec.describe OrderAddress, type: :model do
       end
       it 'phone_numberは11桁でも保存できる' do
         @order_address.phone_number += '0'
+        expect(@order_address).to be_valid
       end
     end
 
@@ -38,7 +39,7 @@ RSpec.describe OrderAddress, type: :model do
         check_error_messages(@order_address, "Post code is invalid. Include hyphen(-)")
       end
       it 'post_codeが全角数字を含むと保存できない' do
-        @order_address.post_code += '123-456７'
+        @order_address.post_code = '123-456７'
         check_error_messages(@order_address, "Post code is invalid. Include hyphen(-)")
       end
       # prefecture_id
@@ -88,12 +89,5 @@ RSpec.describe OrderAddress, type: :model do
         check_error_messages(@order_address, "User can't be blank")
       end
     end
-  end
-
-  private
-
-  def puts_error_messages
-    @order_address.valid?
-    @order_address.errors.full_messages
   end
 end
