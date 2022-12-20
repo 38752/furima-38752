@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       @item = Item.find(params[:id])
-      render :new
+      render :index
     end
   end
 
