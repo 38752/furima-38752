@@ -9,6 +9,7 @@ require("@rails/ujs").start()
 // JavaScriptファイルが読み込まれなくなることがあるため無効にする
 require("@rails/activestorage").start()
 require("channels")
+require("../card.js")
 require("../tax.js")
 
 

@@ -9,7 +9,7 @@
 
     <%= render 'shared/error_messages', model: f.object %>
 
-    <%= render partial: 'form', locals: {f: f} %>
+    <%= render partial: 'item_form', locals: {f: f} %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "出品する" ,class:"sell-btn" %>
