@@ -6,6 +6,7 @@ RSpec.describe OrderAddress, type: :model do
       item = FactoryBot.create(:item)
       buyer = FactoryBot.create(:user)
       @order_address = FactoryBot.build(:order_address, user_id: buyer.id, item_id: item.id)
+      sleep 0.1
     end
 
     context '保存できる場合' do
@@ -76,9 +77,19 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.phone_number += '０'
         check_error_messages(@order_address, "Phone number is invalid.")
       end
+      # item
+      it 'itemが紐づいていないと保存できない' do
+        @order_address.item_id = nil
+        check_error_messages(@order_address, "Item can't be blank")
+      end
+      # user
+      it 'userが紐づいていないと保存できない' do
+        @order_address.user_id = nil
+        check_error_messages(@order_address, "User can't be blank")
+      end
     end
-
   end
+
   private
 
   def puts_error_messages
