@@ -32,4 +32,4 @@ namespace :deploy do
   end
 end
 
-set :branch, ENV['BRANCH'] || "main"
+# set :branch, ENV['BRANCH'] || "main"
